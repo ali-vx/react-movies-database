@@ -1,15 +1,17 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import Movie from "./components/movie";
 
 const FEATURED_API =
 	"https://api.themoviedb.org/3/discover/movie?api_key=31b3afc035368d5441c7200a0ccf13c9&language=en-US&sort_by=popularity.desc&page=1";
 
 const SEARCH_API =
-	"http://api.themoviedb.org/3/search/movie?api_key=31b3afc035368d5441c7200a0ccf13c9&query=";
+	"https://api.themoviedb.org/3/search/movie?api_key=31b3afc035368d5441c7200a0ccf13c9&query=";
 
 function App() {
 	const [movies, setMovies] = useState([]);
 	const [searchTerm, setSearchTerm] = useState("");
+
+	const searhBar = useRef(null);
 
 	useEffect(() => {
 		getMovies(FEATURED_API);
@@ -25,9 +27,9 @@ function App() {
 
 	const handleOnSubmit = (e) => {
 		e.preventDefault();
-		if(searchTerm) {
 		getMovies(SEARCH_API+searchTerm);
-		}
+		setSearchTerm("");
+		searhBar.current.blur();
 	};
 
 	const handleOnChange = (e) => {
@@ -43,7 +45,8 @@ function App() {
 				type="search" 
 				placeholder="Search..." 
 				value={searchTerm} 
-				onChange={handleOnChange} />
+				onChange={handleOnChange}
+				ref={searhBar} />
 			</form>
 			</header>
 		<div className="movie-container">
