@@ -38,7 +38,7 @@ function App() {
 
 	return (
 	<>
-		<header>
+		<h2>Movies <span style={{color: "#00ADB5"}}>Database</span></h2>
 			<form onSubmit={handleOnSubmit}>
 				<input 
 				className="search" 
@@ -48,7 +48,6 @@ function App() {
 				onChange={handleOnChange}
 				ref={searhBar} />
 			</form>
-			</header>
 		<div className="movie-container">
 			{movies.length > 0 &&
 				movies.map((movie) => <Movie key={movie.id} {...movie} />)}
