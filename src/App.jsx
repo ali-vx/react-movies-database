@@ -36,9 +36,13 @@ function App() {
 		setSearchTerm(e.target.value);
 	};
 
+	const handleOnClick = (e) => {
+		window.location.reload(false);
+	};
+
 	return (
 	<>
-		<h2>Movies <span style={{color: "#00ADB5"}}>Database</span></h2>
+		<h2 onClick={handleOnClick}>Movies <span style={{color: "#00ADB5",cursor: "pointer"}}>Database</span></h2>
 			<form onSubmit={handleOnSubmit}>
 				<input 
 				className="search" 
